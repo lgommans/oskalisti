@@ -1,0 +1,187 @@
+:root {
+	color-scheme: dark;
+}
+html {
+	background: linear-gradient(-225deg, #120b2f 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);;
+	background-attachment: fixed;
+}
+body {
+	margin: 0;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 42px;
+	font-family: sans-serif;
+}
+dialog {
+	padding: 15px;
+	border-radius: 15px;
+	/*background: linear-gradient(113deg, rgb(1, 90, 230) 0%, rgb(16, 37, 60) 30%, rgb(25,10,20) 80%, rgb(157, 6, 162) 100%);*/
+	/*background: linear-gradient(113deg, rgb(73, 6, 111) 0%, rgb(0, 47, 47) 35%, rgb(49, 2, 48) 100%);*/
+	background: linear-gradient(180deg, rgb(145, 11, 135) 7%, rgb(73, 6, 70) 73%);
+}
+::backdrop {
+	backdrop-filter: blur(6px);
+	background: #00000080;
+}
+dialog>button.close {
+	float: right;
+}
+a {
+	color: #f73;
+}
+a:visited {
+	color: #fa0;
+}
+header {
+	padding-top: 4px;
+	margin-bottom: 35px;
+}
+header a, header a:visited {
+	color: inherit;
+}
+header>.logo, header>.pagename {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+header>.user {
+	display: inline-block;
+	margin-top: 4px;
+	float: right;
+	background: #ffffff1f;
+	padding: 5px;
+	border-radius: 6px;
+}
+h1 {
+	font-weight: bold;
+	font-size: 1.5em;
+}
+ul {
+	margin-bottom: 0px;
+	line-height: 1.5em;
+}
+button, input[type=button], input[type=submit] {
+	border: 0;
+	box-shadow: 0px 0px 3px black;
+	border-radius: 4px;
+	margin: 1px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
+textarea, input[type=text] {
+	background: #eee;
+	color: black;
+	border-radius: 4px;
+}
+input[type=checkbox] {
+	accent-color: #a24afb;
+}
+input[name=title], textarea[name=description] {
+	width: 400px;
+}
+input.comment {
+	width: 400px;
+	margin-top: 5px;
+}
+section {
+	margin-bottom: 18px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-radius: 20px;
+	border-color: transparent;
+	background: #ffffff1f;
+}
+img {
+	display: none;
+}
+img[src] {
+	display: block;
+	cursor: pointer;
+}
+img[src]:not(.fullsize) {
+	max-width: 100%;
+	max-height: 250px;
+}
+.inline {
+	display: inline;
+}
+.message {
+	display: inline-block;
+	margin-bottom: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-radius: 5px;
+	background: linear-gradient(135deg, rgb(26, 71, 176), rgb(57, 167, 172));
+	color: white;
+}
+.error {
+	display: inline-block;
+	margin-bottom: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-radius: 5px;
+	background: linear-gradient(135deg, rgb(176, 26, 27), rgb(210, 119, 90));
+	color: white;
+}
+.wish.personal {
+	background: #00000040;
+}
+.wishinfo {
+	margin-bottom: 4px;
+	border-left: 3px solid teal;
+	background: #00000030;
+	padding-left: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: calc(100% - 40px);
+}
+.titleandbuttons {
+	margin-top: 4px;
+	margin-bottom: 8px;
+}
+.title {
+	font-weight: bold;
+	font-size: 1.17em;
+}
+.struck .title {
+	text-decoration: line-through #ffffffa0;
+}
+.wish:not(.struck) .delete {
+	display: none;
+}
+.jumbobutton {
+	transform-origin: left;
+	transform: scale(1.1);
+}
+
+@media(min-width: 1100px) {
+	body {
+		margin-left: 25px;
+		width: 800px;
+	}
+	dialog {
+		padding: 20px;
+		border-radius: 20px;
+	}
+	input[name=title], textarea[name=description] {
+		width: 550px;
+	}
+	.jumbobutton {
+		transform-origin: left;
+		transform: scale(1.2);
+	}
+}
+
+@media(pointer: coarse) {
+	ul {
+		line-height: 2.5em;
+	}
+}
