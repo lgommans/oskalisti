@@ -24,7 +24,7 @@
 	}
 	?>
 		<section>
-			<a href="?dropPrivileges">Drop privileges</a>
+			<a href="?dropPrivileges"><?php echo tr('Drop privileges'); ?></a>
 		</section>
 		<section>
 			<form method=POST>
@@ -39,6 +39,20 @@
 				</select><br>
 				<input type=submit value='Create user'>
 			</form>
+		</section>
+		<section>
+			<table>
+				<?php
+					$result = db('SELECT name, email, language, admin FROM users');
+					while ($row = $result->fetch_row()) {
+						$name_htmlescaped = htmlescape($row[0]);
+						$email_htmlescaped = htmlescape($row[1]);
+						$language_htmlescaped = htmlescape($row[2]);
+						$isadmin = ($row[3] == 1 ? 'admin' : '');
+						print("<tr><td>$name_htmlescaped</td><td>$email_htmlescaped</td><td>$language_htmlescaped</td><td>$isadmin</td></tr>");
+					}
+				?>
+			</table>
 		</section>
 	<?php
 

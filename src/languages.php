@@ -128,6 +128,7 @@
 			'Picture' => 'Picture',
 			'Personal wish (only visible to A and B)' => 'Personal wish (only visible to PERSON1 and PERSON2)',
 			'Delete current image' => 'Delete current image',
+			'Drop privileges' => 'Drop privileges',
 		],
 
 		'de' => [
