@@ -91,7 +91,7 @@
 			if ($_FILES['pic']['size'] >= 1024 * 1024 * 16) {
 				die('Picture too large');
 			}
-			// TODO is there actually a reason not to allow all image/* types? Does anything pose a security risk if the original image/* MIME type is set by the server?
+			// We cannot just allow MIME image/* because a type such as image/svg+xml is dangerous and needs special handling. We've got SVG handling now, but there might be more such types (now or later).
 			$imagetype = explode('/', $_FILES['pic']['type'])[1];
 			if ( ! in_array($imagetype, ['png', 'jpeg', 'webp', 'avif', 'svg+xml', 'gif', 'bmp', 'tiff'])) {
 				die('Disallowed file type. The file selector should show exactly the types that are allowed.');

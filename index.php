@@ -1,5 +1,4 @@
 <?php
-	// TODO allow deleting wishes which you added
 	$included = true;
 	require('config.php');
 	require('src/languages.php');
