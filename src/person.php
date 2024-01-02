@@ -408,6 +408,16 @@
 					img.classList.toggle('fullsize');
 				});
 			});
+
+			addEventListener('keydown', function(ev) {
+				if (ev.keyCode == 65) {
+					if (['INPUT', 'TEXTAREA'].indexOf(document.activeElement.tagName.toUpperCase()) === -1) {
+						document.querySelector('#addwish').click();
+						ev.preventDefault();
+						return false;
+					}
+				}
+			});
 		</script>
 	<?php
 
