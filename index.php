@@ -24,13 +24,13 @@
 		if ( ! empty($_SESSION["session"])) {
 			print('<header>');
 			print('<a class=logo href="."><img src="res/logo.png" border=0 height=56 align=middle></a>');
-			print('<div class=user>');
+			print('<nav class=user>');
 			print(tr('Welcome') . ', '
 				. '<a href="?profile" style="/*color: ' . htmlescape($GLOBALS['color']) . '*/">' . htmlescape($GLOBALS['name']) . '</a> | <a href="?logout">' . tr('Log out') . '</a>');
 			if ($_SESSION["isadmin"] === true && $_SESSION['session'] != 'admin') {
 				print(' | <a href="?sudo">' . tr('su') . '</a>');
 			}
-			print('</div>');
+			print('</nav>');
 			print('</header>');
 		}
 	}
