@@ -6,6 +6,24 @@
 		if ($dbconnection->connection_error) {
 			die('Could not connect to database.');
 		}
+
+		// "SHOW TABLES LIKE 'tblname'" is about twice as fast as "DESCRIBE tblname", including query overhead
+		$result = $dbconnection->query('SHOW TABLES LIKE \'wishes\'');
+		if ($result->num_rows < 1) {
+			$setupsql = @file_get_contents('db.sql', $length=1024*1024);
+			// suppress file reading error output and check the success status manually
+			if ($setupsql === false) {
+				// Not localized because it's a technical problem for the admin to see which they might want to look up or report
+				die('The database does not seem to be set up because a table called "wishes" is missing, and the file "db.sql" could not be read for setting up the database.<br><br>
+
+				     Does the file exist, and does the webserver have read permissions? Alternatively, you can also set up the database by running the SQL setup statements manually.');
+			}
+			$dbconnection->multi_query($setupsql);
+			while ($dbconnection->more_results()) {
+				// prevent "commands out of sync"
+				$dbconnection->next_result();
+			}
+		}
 	}
 
 	function db($q) {
