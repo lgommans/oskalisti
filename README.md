@@ -20,9 +20,9 @@ Vision-impaired users should be able to use the software without much trouble du
 
 Let's say you use it with your mom and dad.
 
-- Throughout the year, your mom might mention that she'd like to visit a museum far away, or maybe your dad complains about the crappy hand mixer while baking.
-- You add these things to their list.
-- When mom's birthday comes around, your dad and you can look at her list.
+- Throughout the year, your mom might mention that she'd like to visit a museum far away, or maybe your dad complains about the crappy hand mixer while baking
+- You add these things to their wishlists
+- When mom's birthday comes around, your dad and you can look at her list, striking off items you decided to give to avoid double gifting
 - She probably forgot that she ever mentioned this museum to you, so gifting her the day trip is a nice surprise!
 
 
