@@ -2,38 +2,62 @@
 
 Simple wishlist software for a group of friends and/or family
 
-![Main page showing a list of users' wishlists and an option to add a wish to your own list without having to view your own list, thus avoiding spoilers](README-mainpage.png)
-![Wishlist page of Gimli, showing he wished for a finely crafted dwarven axe. There are buttons available to edit the wish, strike it off, or adding a comment. It shows that Gandalf added the wish on 2023-12-24](README-wishlist.png)
-![The profile page, where you can configure your name, color, and interface language. It also shows the email address used for your account](README-profile.png)
+- Main page:  
+  ![Main page showing a list of users' wishlists and an option to add a wish to your own list without having to view your own list, thus avoiding spoilers](README-mainpage.png)
+- A user's wishlist:  
+  ![Wishlist page of Gimli, showing he wished for a finely crafted dwarven axe. There are buttons available to edit the wish, strike it off, or adding a comment. It shows that Gandalf added the wish on 2023-12-24](README-wishlist.png)
+- Your profile page:  
+  ![The profile page, where you can configure your name, color, and interface language. It also shows the email address used for your account](README-profile.png)
 
-It was made to be simple both in terms of user interface, as well as in terms of system requirements (it can run on a free webhost!).
+Óskalisti was made to be simple, both in terms of user interface as well as in terms of system requirements (it can run on a free webhost!).
 
 Vision-impaired users should be able to use the software without much trouble due to the no-frills layout and extended use of standard HTML components.
 
 
+## Usage
+
+Let's say you use it with your mom and dad.
+
+- Throughout the year, your mom might mention that she'd like to visit a museum far away, or maybe your dad complains about the crappy hand mixer while baking.
+- You add these things to their list.
+- When mom's birthday comes around, your dad and you can look at her list.
+- She probably forgot that she ever mentioned this museum to you, so gifting her the day trip is a nice surprise!
+
+
 ## Getting started
 
-1. Set up a standard LAMP/WAMP stack, or use a (free) webhost
+1. Set up a standard PHP+MariaDB webserver, or use a (free) webhost
    - `mail()` needs to be functional for sending login emails
+     - Allowed email addresses are set by the administrator (you), so no risk of spam being sent
    - PHP 7.0 (or newer) is needed for the `random_bytes()` function
-   - Any web server will work (Apache's `.htaccess` is not used, resulting in ugly URLs but better portability)
-   - Wikipedia has [an overview](https://en.wikipedia.org/w/index.php?title=LAMP_(software_bundle)&oldid=1193247209#External_links) of various LAMP setup guides
-   - Windows users might like <https://www.wampserver.com> or <https://www.apachefriends.org>
+   - Nginx, Apache, Caddy, Lighttpd... any web server will work (`.htaccess` is **not** used)
 2. Place the files in the desired directory within your document root
-   - This could be `/var/www/html`, `C:\XAMPP\htdocs`, or something else depending on your installation environment. Subdirectories work out of the box.
-   - Having `.git` and other auxiliary files accessible is not a problem because the source is open anyway, but if you want to trim it to the essentials, you could remove: `README* .gitignore .git/`
-3. Copy `config-example.php` to `config.php` and set at least the database name, username, and password
-   - If you need to manually create a database user, this might work (depending on your setup):
-     1. `$ sudo mariadb`
-	 1. `> CREATE DATABASE 'oskalisti';`
-	 1. `> CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'P@ssw0rd!';`
-	 1. `> GRANT ALL PRIVILEGES ON oskalisti.* TO 'newuser'@'localhost';`
-4. Create an Óskalisti account for yourself: `INSERT INTO oskalisti.users (email, name, admin) VALUES('you@example.org', 'Galadriel', 1);`
-   - Customize the database name `oskalisti` if you chose a different name
-5. Done!
+   - Placing it in a subdirectory works automatically, no need to deploy it to the root
+   - Including the `.git` directory is not a problem because it's open source software, and makes updating easy with `git pull`
+3. Copy `config-example.php` to `config.php` and fill in the database connection details (username, password, database name)
+4. Open the website in your browser. This triggers the database creation script automatically
+5. Create an Óskalisti account for yourself: `INSERT INTO users (email, name, admin) VALUES('you@example.org', 'Galadriel', 1);`
 
-You can now open the website in your browser, log in, and invite others using the administration screen.
-Creating more administrators is done by setting the person's `isadmin` field to `1` in the database.
+Done!  
+You can now log in and invite other users on the administration screen.
+
+
+## Permission model
+
+- Nothing can be seen before logging in
+  - Normal wishes are visible for anyone who is logged in
+  - Personal wishes can be viewed by the person who made it, and the person whose list it was added to
+- Everyone:
+  - Has a wishlist
+  - Can view anyone's list and add (personal or normal) wishes for them
+  - Can delete only the wishes which they created
+  - Can edit anyone's wish (unless they are marked as personal, because then you cannot see it exists)
+    - It is meant for a group of friends or family, where there is trust
+    - The "last edited by" field cannot be cleared, so you can always see who did something
+- Administrators:
+  - Can delete any wish
+  - Can create accounts and see a list of current accounts
+  - **Cannot** see wishes marked as personal (but the server owner can use database access to see what data is stored on their server)
 
 
 ## Improvements
