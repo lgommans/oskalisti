@@ -1,7 +1,6 @@
 :root {
 	color-scheme: dark;
-	--page-padding-top: 42px;
-	--page-padding-bottom: 42px;
+	--page-padding-bottom: 62px;
 	--footer-margin-top: 35px;
 }
 html {
