@@ -24,7 +24,7 @@
 	}
 	?>
 		<section>
-			<a href="?dropPrivileges"><?php echo tr('Drop privileges'); ?></a>
+			<a href="?dropPrivileges"><?php echo tr('Leave administrator mode'); ?></a>
 		</section>
 		<section>
 			<form method=POST>

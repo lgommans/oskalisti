@@ -30,7 +30,7 @@
 			print(tr('Welcome') . ', '
 				. '<a href="?profile" style="/*color: ' . htmlescape($GLOBALS['color']) . '*/">' . htmlescape($GLOBALS['name']) . '</a> | <a href="?logout">' . tr('Log out') . '</a>');
 			if ($_SESSION["isadmin"] === true && $_SESSION['session'] != 'admin') {
-				print(' | <a href="?sudo">' . tr('su') . '</a>');
+				print(' | <a href="?sudo" title="' . tr('su-title') . '">' . tr('su') . '</a>');
 			}
 			print('</nav>');
 			print('</header>');

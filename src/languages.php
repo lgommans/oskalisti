@@ -128,7 +128,9 @@
 			'Picture' => 'Picture',
 			'Personal wish (only visible to A and B)' => 'Personal wish (only visible to PERSON1 and PERSON2)',
 			'Delete current image' => 'Delete current image',
-			'Drop privileges' => 'Drop privileges',
+			'su' => 'su',
+			'su-title' => '&quot;su&quot; is an old Unix command for using administrative permissions',
+			'Leave administrator mode' => 'Leave administrator mode',
 		],
 
 		'de' => [
@@ -185,6 +187,9 @@
 			'Commented' => 'Kommentar von',
 			'Picture' => 'Bild',
 			'Delete current image' => 'Jetziges Bild entfernen',
+			'su' => 'su',
+			'su-title' => '&quot;su&quot; ist ein altes Unix-Befehl um Administratorrechten zu benutzen',
+			'Leave administrator mode' => 'Administrator-Modus verlassen',
 		],
 
 		'nl' => [
@@ -243,5 +248,8 @@
 			'Picture' => 'Afbeelding',
 			'Personal wish (only visible to A and B)' => 'Persoonlijke wens (alleen zichtbaar voor PERSON1 en PERSON2)',
 			'Delete current image' => 'Huidige afbeelding verwijderen',
+			'su' => 'su',
+			'su-title' => '&quot;su&quot; is een oud Unix-commando om administratorrechten te gebruiken',
+			'Leave administrator mode' => 'Administratormodus verlaten',
 		],
 	];
