@@ -2,12 +2,14 @@
 
 Simple wishlist software for a group of friends and/or family
 
-- Main page:  
-  ![Main page showing a list of users' wishlists and an option to add a wish to your own list without having to view your own list, thus avoiding spoilers](README-mainpage.png)
-- A user's wishlist:  
-  ![Wishlist page of Gimli, showing he wished for a finely crafted dwarven axe. There are buttons available to edit the wish, strike it off, or adding a comment. It shows that Gandalf added the wish on 2023-12-24](README-wishlist.png)
-- Your profile page:  
-  ![The profile page, where you can configure your name, color, and interface language. It also shows the email address used for your account](README-profile.png)
+**Main page**  
+![Main page showing a list of users' wishlists and an option to add a wish to your own list without having to view your own list, thus avoiding spoilers](README-mainpage.png)
+
+**A user's wishlist**  
+![Wishlist page of Gimli, showing he wished for a finely crafted dwarven axe. There are buttons available to edit the wish, strike it off, or adding a comment. It shows that Gandalf added the wish on 2023-12-24](README-wishlist.png)
+
+**Your profile page**  
+![The profile page, where you can configure your name, color, and interface language. It also shows the email address used for your account](README-profile.png)
 
 Óskalisti was made to be simple, both in terms of user interface as well as in terms of system requirements (it can run on a free webhost!).
 
