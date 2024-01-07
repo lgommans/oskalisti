@@ -84,4 +84,6 @@ Other improvements or feature requests are also welcome!
 - SVG image uploads are supported because SVG is awesome, but this lead to a cross-site scripting vulnerability when a user opens the uploaded SVG in a new tab or otherwise views it directly.
   An SVG can contain scripts and this is executed in the website's context when the image is rendered outside of an &lt;img&gt; tag. This was caught before the first release and a
   Content Security Policy header now denies script execution for such images. Safety advice was also added to relevant Stackoverflow pages so others hopefully don't make the same mistake.
+- This software is distributed under the AGPL license, version 3, which can be viewed in the `LICENSE.txt` file
+  - This license grants you the software freedoms: run the software as you want, learn from it, modify it in any way, and share it with others, under the condition that you also grant these freedoms to others
 

@@ -19,6 +19,8 @@
 			<link rel='icon' href='res/logo.png' type='image/png'>
 			<meta name='viewport' content='width=450'>
 			<meta name='format-detection' content='telephone=no'>
+
+			<div id=content-wrapper>
 		<?php
 
 		if ( ! empty($_SESSION["session"])) {
@@ -36,6 +38,8 @@
 	}
 
 	function renderFooter() {
+		print('</div>');
+		print('<footer>This software is <a href="https://codeberg.org/lucg/oskalisti">freely available</a> and you can use, study, modify, and share it using the open AGPLv3 license</footer>');
 	}
 
 	if (isset($_GET['cspreport'])) {

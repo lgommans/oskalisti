@@ -1,5 +1,8 @@
 :root {
 	color-scheme: dark;
+	--page-padding-top: 42px;
+	--page-padding-bottom: 42px;
+	--footer-margin-top: 35px;
 }
 html {
 	background: linear-gradient(-225deg, #120b2f 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);;
@@ -9,8 +12,11 @@ body {
 	margin: 0;
 	padding-left: 8px;
 	padding-right: 8px;
-	padding-bottom: 42px;
+	padding-bottom: var(--page-padding-bottom);
 	font-family: sans-serif;
+}
+#content-wrapper {
+	min-height: calc(100vh - var(--page-padding-bottom) - var(--footer-margin-top) - 20px);
 }
 dialog {
 	padding: 15px;
@@ -31,6 +37,11 @@ a {
 }
 a:visited {
 	color: #fa0;
+}
+footer {
+	margin-top: var(--footer-margin-top);
+	font-size: 0.8em;
+	opacity: 0.9;
 }
 header {
 	padding-top: 4px;
@@ -53,6 +64,8 @@ header>.user {
 	border-radius: 6px;
 }
 h1 {
+	margin-top: 0px;
+	padding-top: 16px;  /* browser default style is margin-top:16px, but by using padding we avoid making the parent container have extra margin and messing up the page height calculation for the footer */
 	font-weight: bold;
 	font-size: 1.5em;
 }
