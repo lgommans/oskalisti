@@ -117,6 +117,7 @@
 					edited_timestamp = '$time',
 					personal = '$personal'
 				WHERE id = '$wishid_int'
+					AND (personal = 0 OR added_by = '$loggedinuserid_int')
 			");
 			if ($addpic || $delpic) {
 				db("
