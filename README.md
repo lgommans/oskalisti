@@ -89,3 +89,7 @@ Other improvements or feature requests are also welcome!
 - This software is distributed under the AGPL license, version 3, which can be viewed in the `LICENSE.txt` file
   - This license grants you the software freedoms: run the software as you want, learn from it, modify it in any way, and share it with others, under the condition that you also grant these freedoms to others
 
+---
+
+This repository is mirrored between [Codeberg](https://codeberg.org/lucg/oskalisti) and [GitHub](https://github.com/lgommans/oskalisti)
+
