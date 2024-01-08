@@ -22,8 +22,10 @@ Let's say you use it with your mom and dad.
 
 - Throughout the year, your mom might mention that she'd like to visit a museum far away, or maybe your dad complains about the crappy hand mixer while baking
 - You add these things to their wishlists
-- When mom's birthday comes around, your dad and you can look at her list, striking off items you decided to give to avoid double gifting
+- When mom's birthday comes around, your dad and you can look at her list, striking off items when you decide to give them to avoid double gifting
 - She probably forgot that she ever mentioned this museum to you, so gifting her the day trip is a nice surprise!
+
+Items still left on the list afterwards can be considered when the next holiday or birthday comes around. Use it as a perpetual system :)
 
 
 ## Getting started
@@ -83,6 +85,10 @@ Other improvements or feature requests are also welcome!
 - Óskalisti means wishlist in Icelandic, breaking down as óska for wish (it shares a root with the English word "ask") and listi for list
 - Wenslys (Afrikaans) was the original name of the project, but whenever the developer glanced over that word in their browser, it made them think of Wendy's
 - Initial development was started on 2023-11-26
+- This project continues/improves a system the author used for many years:
+  - My partner and I would manage each other's wishlists, such that we never had to see our own
+  - Family would ask my partner for the contents of my list before a holiday or my birthday, and my partner would coordinate to prevent double gifting
+  - With Óskalisti, I can add things to my own list (without spoiling myself), and my family can view it any time and strike items off independently
 - SVG image uploads are supported because SVG is awesome, but this lead to a cross-site scripting vulnerability when a user opens the uploaded SVG in a new tab or otherwise views it directly.
   An SVG can contain scripts and this is executed in the website's context when the image is rendered outside of an &lt;img&gt; tag. This was caught before the first release and a
   Content Security Policy header now denies script execution for such images. Safety advice was also added to relevant Stackoverflow pages so others hopefully don't make the same mistake.
