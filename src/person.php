@@ -250,23 +250,26 @@
 
 			$title_htmlescaped = htmlescape($row['title']);
 			$description_htmlescaped = htmlescape($row['description']);
-			$description_rendered = linkifiedbbcode($row['description']);
+			if (strlen($row['description']) > 0) {
+				$description_rendered = '<div class=wishinfo>' . linkifiedbbcode($row['description']) . '</div>';
+			}
+			else {
+				$description_rendered = '';
+			}
 			$html = "
 				<section id='wish$wishid_int' class='wish$personalClass$struckClass' data-id='$wishid_int' data-descriptionbb='$description_htmlescaped' data-addedbyus=$added_by_us>
-					<div class=wishinfo>
-						<div class=titleandbuttons>
-							<div class=title>$title_htmlescaped</div>
-							<button class=edit>$Edit</button>
-							<form class=inline method=POST onsubmit='return confirm(\"$R_U_sure_strike\");'>
-								<input type=hidden name=toggleStrike value='$wishid_int'>
-								<input type=submit value='$Strike'>
-							</form>
-							<button class=comment>$Comment</button>
-							$deletewishbtn
-						</div>
-						$pic
-						$description_rendered
+					<div class=titleandbuttons>
+						<div class=title>$title_htmlescaped</div>
+						<button class=edit>$Edit</button>
+						<form class=inline method=POST onsubmit='return confirm(\"$R_U_sure_strike\");'>
+							<input type=hidden name=toggleStrike value='$wishid_int'>
+							<input type=submit value='$Strike'>
+						</form>
+						<button class=comment>$Comment</button>
+						$deletewishbtn
 					</div>
+					$pic
+					$description_rendered
 					$added$edited
 					$personalText
 					$comments
@@ -275,7 +278,7 @@
 
 			if ($struck) {
 				if (strlen($struck_wishes) == 0) {
-					$struck_wishes = '<section><h2>' . tr('Struck wishes') . '</h2>';
+					$struck_wishes = '<hr><h2>' . tr('Struck wishes') . '</h2>';
 				}
 				$struck_wishes .= $html;
 			}
@@ -283,9 +286,6 @@
 				$active_wishes .= $html;
 			}
 		}
-	}
-	if (strlen($struck_wishes) > 0) {
-		$struck_wishes .= '</section>';
 	}
 	if (strlen($active_wishes) == 0) {
 		$active_wishes = tr('person has no wishes');
@@ -296,18 +296,16 @@
 	?>
 		<a href='.'>&#x25C2; <?php echo tr('Back to the overview'); ?></a><br><br>
 
+		<h2>
+			<?php echo tr('Wishlist of'); ?>
+			<span style="color: <?php echo $listownercolor_htmlescaped; ?>"><?php echo htmlescape($listownername); ?></span>
+		</h2>
+
 		<section>
-			<h2>
-				<?php echo tr('Wishlist of'); ?>
-				<span style="color: <?php echo $listownercolor_htmlescaped; ?>"><?php echo htmlescape($listownername); ?></span>
-			</h2>
-
-			<section>
-				<button id=addwish class=jumbobutton><?php echo tr('Add a wish'); ?></button>
-			</section>
-
-			<?php echo $active_wishes; ?>
+			<button id=addwish class=jumbobutton><?php echo tr('Add a wish'); ?></button>
 		</section>
+
+		<?php echo $active_wishes; ?>
 
 		<?php echo $struck_wishes; ?>
 
