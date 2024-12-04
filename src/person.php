@@ -152,7 +152,7 @@
 			edited_by,
 			edited_timestamp,
 			(SELECT name FROM users u WHERE u.id = w.edited_by) AS edited_by_name,
-			(SELECT color FROM users u WHERE u.id = w.added_by) AS edited_by_color,
+			(SELECT color FROM users u WHERE u.id = w.edited_by) AS edited_by_color,
 			struck,
 			personal,
 			picturetype
