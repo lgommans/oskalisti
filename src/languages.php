@@ -223,7 +223,7 @@
 			'Add comment' => 'Opmerking toevoegen',
 			'Comment_text_placeholder' => 'Ik ga boeken 2 en 3 cadeau doen',
 			'Struck wishes' => 'Afgestreepte wensen',
-			'Unstrike' => 'Ontafstrepen',
+			'Unstrike' => 'Onafstrepen',
 			'spoiler_alert_confirm' => 'Dat is jouw eigen lijst! Weet je zeker dat je potentiële verrassingen wil inzien?',
 			'Personal' => 'Persoonlijk',
 			"Only visible to you and the list's owner" => "Enkel zichtbaar voor jou en de eigenaar van de lijst",
