@@ -348,7 +348,7 @@
 
 			document.querySelectorAll('.wish .comment').forEach(function(btn) {
 				btn.addEventListener('click', function(ev) {
-					let wishel = btn.parentNode.parentNode.parentNode;
+					let wishel = btn.closest('.wish');
 					cmodal.querySelector('input[name=wishid]').value = wishel.dataset.id;
 					cmodal.querySelector('.title').innerText = wishel.querySelector('.title').innerText;
 					cmodal.showModal();
@@ -357,7 +357,7 @@
 
 			document.querySelectorAll('.wish .edit').forEach(function(btn) {
 				btn.addEventListener('click', function(ev) {
-					let wishel = btn.parentNode.parentNode.parentNode;
+					let wishel = btn.closest('.wish');
 					if (aoewishidfield.value == wishel.dataset.id) {
 						// they were already editing this wish: don't overwrite what they entered
 						aoemodal.showModal();
