@@ -17,6 +17,7 @@
 	$loggedinuserid_int = intval($_SESSION['userid']);
 
 	$personid_int = intval($_GET['person']);
+
 	$result = db("SELECT name, color FROM users WHERE id = '$personid_int'");
 	if ($result->num_rows != 1) {
 		die(tr('personid not found'));
@@ -61,10 +62,26 @@
 		");
 	}
 
-	if (isset($_POST['toggleStrike'])) {
+	if (isset($_POST['setStrike'])) {
 		$time = time();
-		$wishid_int = intval($_POST['toggleStrike']);
+		$wishid_int = intval($_POST['setStrike']);
+		$postedState = ($_POST['currentState'] == 1 ? 1 : 0);
 		$loggedinuserid_int = intval($_SESSION['userid']);
+		$result = db("SELECT struck FROM wishes WHERE id = '$wishid_int'");
+		if ($result->num_rows == 0) {
+			die(tr('wishid not found'));
+		}
+		$dbstate = ($result->fetch_row()[0] == 1 ? 1 : 0); // avoid that we can get into an invalid state and it gets stuck. Apply the same condition as the page uses to show strike/unstrike
+		if ($dbstate !== $postedState) {
+			if ($postedState == 1) {
+				print(tr('wish already unstruck.'));
+			}
+			else {
+				print(tr('wish already struck.'));
+			}
+			print("<br><br><a href='?person=$personid_int'>" . tr('Back to wishlist') . '</a>');
+			exit;
+		}
 		db("
 			UPDATE wishes
 			SET
@@ -170,7 +187,8 @@
 			$Strike = ($struck ? tr('Unstrike') : tr('Strike off'));
 			$Comment = tr('Add comment');
 			$Comment_text_placeholder = tr('Comment_text_placeholder');
-			$R_U_sure_strike = ($row['struck'] == 1 ? tr('Are you sure to unstrike this') : tr('Are you sure to strike this'));
+			$R_U_sure_strike = ($struck ? tr('Are you sure to unstrike this') : tr('Are you sure to strike this'));
+			$struckState_int = ($struck ? 1 : 0);
 
 			if ($_SESSION['isadmin'] === true || $row['added_by'] == $_SESSION['userid']) {
 				$Delete = tr('Delete');
@@ -262,7 +280,8 @@
 						<div class=title>$title_htmlescaped</div>
 						<button class=edit>$Edit</button>
 						<form class=inline method=POST onsubmit='return confirm(\"$R_U_sure_strike\");'>
-							<input type=hidden name=toggleStrike value='$wishid_int'>
+							<input type=hidden name=setStrike value='$wishid_int'>
+							<input type=hidden name=currentState value='$struckState_int'>
 							<input type=submit value='$Strike'>
 						</form>
 						<button class=comment>$Comment</button>
