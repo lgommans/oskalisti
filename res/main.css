@@ -13,6 +13,7 @@ body {
 	padding-right: 8px;
 	padding-bottom: var(--page-padding-bottom);
 	font-family: sans-serif;
+	overflow-wrap: break-word;
 }
 #content-wrapper {
 	min-height: calc(100vh - var(--page-padding-bottom) - var(--footer-margin-top) - 20px);
