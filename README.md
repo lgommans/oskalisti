@@ -48,6 +48,9 @@ You can now log in and invite other users on the administration screen.
 
 ## Permission model
 
+Óskalisti is meant for a group of friends or family, where users know and trust each other.
+Only the "last edited by" field is meant as an audit trail, so you can always trace who did something in case an issue comes up.
+
 - Nothing can be seen before logging in
   - Normal wishes are visible for anyone who is logged in
   - Personal wishes can be viewed by the person who made it, and the person whose list it was added to
@@ -55,9 +58,7 @@ You can now log in and invite other users on the administration screen.
   - Has a wishlist
   - Can view anyone's list and add (personal or normal) wishes for them
   - Can delete only the wishes which they created
-  - Can edit anyone's wish (unless they are marked as personal, because then you cannot see it exists)
-    - It is meant for a group of friends or family, where there is trust
-    - The "last edited by" field cannot be cleared, so you can always see who did something
+  - Can edit anyone's wish (unless they are marked as personal)
 - Administrators:
   - Can delete any wish
   - Can create accounts and see a list of current accounts
@@ -73,7 +74,7 @@ Features that would be nice to have:
   - Everyone's list can be seen or modified using the weakest login
   - The current email-based login is fairly strong without relying on people remembering or otherwise managing strong and unique passwords, but power users often prefer using a password manager
 - Supporting uploading more than one image per wish
-- Supporting alt texts for user-uploaded images. People can work around this currently by just adding the extra information in the wish's description.
+- Supporting alt texts for user-uploaded images. People can work around this currently by adding the extra information in the wish's description.
 - Improve image zooming. The current system breaks the layout on some mobile browsers (while zooming). Maybe images should simply open in a new tab rather than enlarging inline?
 - See a few technical `TODO`s in the code, e.g.: client-side image size checking or language header parsing
 
