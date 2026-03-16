@@ -3,18 +3,59 @@
 		die('!included');
 	}
 
+	function logInAs($userid, $adminmode) {
+		$_SESSION["userid"] = $userid;
+		if ($adminmode) {
+			$_SESSION["session"] = 'admin';
+			$_SESSION["isadmin"] = true;
+		}
+		else {
+			$_SESSION["session"] = 'user';
+			$_SESSION["isadmin"] = false;
+		}
+	}
+
 	if (isset($_GET['loggedout'])) {
 		$message = tr('Logout successful');
 	}
 
+	if (isset($_GET['loginSecret'])) {
+		// Long-term access link
+
+		$now = time();
+		$token_dbescaped = sqlescape($_GET['loginSecret']);
+		$minLastUse_int = time() - ($secretLinkDays * 3600 * 24);
+		$result = db("
+			SELECT id, admin
+			FROM users
+			WHERE access_token = '$token_dbescaped'
+				AND access_token_last_used > $minLastUse_int
+		");
+		if ($result->num_rows == 0) {
+			$error = tr('login link unknown error');
+		}
+		else {
+			list($userid, $isadmin) = $result->fetch_row();
+			$userid_dbescaped = sqlescape($userid);
+			db("UPDATE users
+			    SET access_token_last_used = '$now'
+			    WHERE id = '$userid_dbescaped'");
+			logInAs($userid, ($isadmin == 1));
+			header('Location: .');
+			exit;
+		}
+	}
+
 	if (isset($_GET['loginToken'])) {
+		// One-time-use access link
+
 		// general cleanup
 		$time = time();
 		db("DELETE FROM loginlinks WHERE expires < '$time'");
 
 		$token_dbescaped = sqlescape($_GET['loginToken']);
 		$result = db("
-			SELECT ll.logs_in_to, u.admin, u.language
+			SELECT ll.logs_in_to, u.admin
 			FROM loginlinks ll
 			INNER JOIN users u
 				ON ll.logs_in_to = u.id
@@ -22,20 +63,21 @@
 				AND ll.token = '$token_dbescaped'
 		");
 		if ($result->num_rows == 0) {
-			$error = tr('login link unknown error');
-		}
-		else {
-			list($userid, $isadmin, $language) = $result->fetch_row();
-			db("DELETE FROM loginlinks WHERE token = '$token_dbescaped'");
-			$_SESSION["userid"] = $userid;
-			if ($isadmin == 1) {
-				$_SESSION["session"] = 'admin';
-				$_SESSION["isadmin"] = true;
+			if ( ! empty($_SESSION['session'])) {
+				/* User clicked a login link, but it's invalid and they're already logged in.
+				 * I assume they used this to find back the link to the application, so let's just take them there.
+				 */
+				header('Location: .');
+				exit;
 			}
 			else {
-				$_SESSION["session"] = 'user';
-				$_SESSION["isadmin"] = false;
+				$error = tr('login link unknown error');
 			}
+		}
+		else {
+			list($userid, $isadmin) = $result->fetch_row();
+			db("DELETE FROM loginlinks WHERE token = '$token_dbescaped'");
+			logInAs($userid, ($isadmin == 1));
 			header('Location: .');
 			exit;
 		}

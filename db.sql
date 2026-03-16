@@ -1,4 +1,4 @@
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `email` VARCHAR(250) UNIQUE KEY NOT NULL,
   `name` VARCHAR(200) NOT NULL,
@@ -7,14 +7,14 @@ CREATE TABLE `users` (
   `language` VARCHAR(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `loginlinks` (
+CREATE TABLE IF NOT EXISTS `loginlinks` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `expires` BIGINT NOT NULL,
   `token` VARCHAR(32) NOT NULL,
   `logs_in_to` INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `wishes` (
+CREATE TABLE IF NOT EXISTS `wishes` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `for` INT NOT NULL,
   `title` VARCHAR(250) NOT NULL,
@@ -38,4 +38,7 @@ CREATE TABLE `comments` (
   `comment` text NOT NULL,
   INDEX(`for_wish`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE users ADD COLUMN IF NOT EXISTS (`access_token` VARCHAR(32) NULL DEFAULT NULL);
+ALTER TABLE users ADD COLUMN IF NOT EXISTS (`access_token_last_used` BIGINT NULL DEFAULT NULL);
 

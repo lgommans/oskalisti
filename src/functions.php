@@ -69,6 +69,7 @@
 	}
 
 	function generateSecureToken() {
+		// Return a token that is generated with a CSPRNG and safe to include without escaping in URLs, database strings, and HTML
 		return substr(
             strtr(
                 base64_encode( // base64 instead of default hex to pack more entropy into fewer bytes

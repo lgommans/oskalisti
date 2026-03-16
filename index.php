@@ -58,9 +58,19 @@
 		'use_strict_mode' => true,
 	]);
 
-	if (empty($_SESSION['session'])) {
+	if (empty($_SESSION['session']) || isset($_GET['loginToken'])) {
+		/* If there is a one-time login token in the URL, they clicked an email and wish to be logged in as that user presumably,
+		 * so use the functionality from the login page no matter if they're already logged in.
+		 */
 		chooseLanguage('detect');
 		require('src/guest.php');
+		exit;
+	}
+
+	// Check whether there is another secret token in the URL despite already being logged in. We don't want to have those stay there for e.g. shoulder surfers...
+	if (isset($_GET['loginSecret'])) {
+		// Links with a login secret code do not have other parameters that we need to preserve, we can just redirect to the root
+		header('Location: .');
 		exit;
 	}
 
